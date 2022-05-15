@@ -58,9 +58,9 @@ void createEmployee(MYSQL* connection){
 
 int main(){
 
+    // Connecting to database
     MYSQL* connection;
     connection  = mysql_init(0);
-
     connection  = mysql_real_connect(connection, "localhost", "TCAdmin", "TCAdmin", "timeclock", 0, NULL, 0);
 
     if(connection){
@@ -70,6 +70,7 @@ int main(){
         exit(1);
     }
 
+    // Login routine
     std::cout << "Terminal Admin Acess Panel..." << std::endl;
     std::cout << "Enter Credentials" << std::endl << std::endl;
 
@@ -78,6 +79,7 @@ int main(){
     MYSQL_RES *userCheckRES;
     MYSQL_ROW userCheckROW;
 
+    // Enter username
     std::cout << "Username: ";
     std::cin >> adminUsername;
     std::cout << std::endl << std::endl;
@@ -90,13 +92,13 @@ int main(){
     userCheckRES = mysql_store_result(connection);
     userCheckROW = mysql_fetch_row(userCheckRES);
 
+    // Check to see if username exists
     if(mysql_num_rows(userCheckRES) != 1){
         std::cout << "Invalid Username" << std::endl;
         exit(1);
-    }
+    }    
 
-    
-
+    // Enter password
     std::cout << "Password: ";
     std::cin >> adminPassword;
     std::cout << std::endl << std::endl;
@@ -107,6 +109,7 @@ int main(){
     passwordStream << hashedPassword;
     std::string passwordCheck = passwordStream.str();
 
+    // Check hashed password aginst hash in database
     if(passwordCheck == userCheckROW[2]){
         std::cout << "Login Success!" << std::endl << std::endl;
         mysql_free_result(userCheckRES);
@@ -116,6 +119,8 @@ int main(){
         exit(1);
     }
 
+
+    // Main loop
     for(;;){
         int userchoice = 0;
         std::cout << "What operation would you like to perform?" << std::endl << std::endl;
@@ -146,8 +151,7 @@ int main(){
             std::cout << "Invalid Choice" << std::endl << std::endl;
         }
 
-
-    }
+    } // End main loop
 
 
     return 0;
