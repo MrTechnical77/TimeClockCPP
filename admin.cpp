@@ -7,6 +7,12 @@
 
 std::hash <std::string> passwordHash;
 
+// Waits for user keystroke before continuing
+void home(){
+    
+}
+
+// 1
 // Function to create new admin account
 void createUser(MYSQL* connection){
 
@@ -21,12 +27,17 @@ void createUser(MYSQL* connection){
 
     usernameCheck << "SELECT user FROM admin WHERE user = '" << newUsername << "';";
     std::string usernameCheckString = usernameCheck.str();
-    mysql_query(connection, usernameCheckString.c_str());
+    int querycheck = mysql_query(connection, usernameCheckString.c_str());
+    if(querycheck != 0){
+        std::cout << "Error communicating with mysql database, no changes made to database." << std::endl << std::endl;
+        return;
+    }
 
     userRES = mysql_store_result(connection);
 
     if(mysql_num_rows(userRES) != 0){
         std::cout << std::endl << "Username is taken, please try again." << std::endl << std::endl;
+        home();
         return;
     }
     
@@ -48,7 +59,34 @@ void createUser(MYSQL* connection){
     return;
 }
 
+// 2
 void createEmployee(MYSQL* connection){
+
+
+
+    return;
+}
+
+// 3
+void deleteAdmin(MYSQL* connection){
+
+
+
+
+    return;
+}
+
+// 4
+void deleteEmployee(MYSQL* connection){
+
+
+
+    return;
+}
+
+// 5
+void changeUsername(MYSQL* connection){
+
 
 
 
@@ -101,7 +139,8 @@ int main(){
     // Enter password
     std::cout << "Password: ";
     std::cin >> adminPassword;
-    std::cout << std::endl << std::endl;
+
+    system("clear");
 
     unsigned long hashedPassword = passwordHash(adminPassword);
 
@@ -127,12 +166,16 @@ int main(){
 
         std::cout << "1. Create New Admin Account" << std::endl;
         std::cout << "2. Create New Employee" << std::endl;
+        std::cout << "3. Delete Admin Account" << std::endl;
+        std::cout << "4. Delete Employee" << std::endl;
+        std::cout << "5. Change Admin Username" << std::endl;
 
         std::cout << "0. Exit Admin Panel" << std::endl << std::endl;
 
         std::cout << "Choice: ";
         std::cin >> userchoice;
-        std::cout << std::endl << std::endl;
+        system("clear");
+
 
         if(userchoice == 1){
             createUser(connection);
@@ -140,6 +183,10 @@ int main(){
 
         if(userchoice == 2){
             createEmployee(connection);
+        }
+
+        if(userchoice == 3){
+            deleteAdmin(connection);
         }
 
         if(userchoice == 0){
