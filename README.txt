@@ -9,6 +9,29 @@ sudo apt install mysql-server
 sudo mysql_secure_installation
 sudo mysql
 
+mysql> SET GLOBAL validate_password.length = 3;
+mysql> SET GLOBAL validate_password.policy = "LOW";
 mysql> CREATE USER 'TCAdmin'@'localhost' IDENTIFIED BY 'TCAdmin';
 mysql> GRANT ALL PRIVILEGES ON *.* TO TCAdmin WITH GRANT OPTION;
 mysql> exit
+
+After these steps are complete open a terminal in the folder you have stored the source code in and run the follwing commands:
+
+sudo mysql
+mysql> \. timeclock.sql
+exit
+sudo apt-get install libmysqlclient-dev
+
+You can now run the source code provided you have a C++ compliler and make installed.
+To do this run the following commands in a terminal opened in the folder with the source code.
+
+make
+./admin
+
+If you do not have one of these installed, complete the following instructions:
+
+For make:
+sudo apt install make
+
+For C++:
+sudo apt install g++
