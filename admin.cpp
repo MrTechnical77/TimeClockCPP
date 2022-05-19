@@ -91,13 +91,63 @@ void deleteAdmin(MYSQL* connection){
         std::cout << "No accounts found\n";
     }
 
+
     MYSQL_ROW adminROW;
 
+
+    // List Admin account and store in array
+    int adminCounter = 0;
+    std::string adminNames[mysql_num_rows(adminRES)];
     while(adminROW = mysql_fetch_row(adminRES)){
-        std::cout << adminROW[0] << std::endl;
+        std::cout << adminCounter + 1<< ". " << adminROW[0] << std::endl;
+        adminNames[adminCounter] = adminROW[0];
+        adminCounter++;
+    }
+        
+    int deleteOption = 0;
+    for(;;){
+        std::cout << "Select which account you would like to delete: ";
+        std::cin >> deleteOption;
+
+        if(deleteOption > 0 && deleteOption <= adminCounter){
+            std::cout << std::endl;
+            break;
+        }
+        else{
+            std::cout << "Invalid option, try again..." << std::endl << std::endl;
+        }
     }
 
-    
+    char deleteContinue;
+    std::cout << "You have selected to delete user " << adminNames[deleteOption - 1] << ", would you like to continue? Y/n" << std::endl;
+    for(;;){
+        std::cin >> deleteContinue;
+
+        if(deleteContinue == 'y' || deleteContinue == 'Y'){
+            break;
+        }
+        else if(deleteContinue == 'n' || deleteContinue == 'N'){
+            system("clear");
+            std::cout << "Deletion canceled, no changes made to database" << std::endl;
+            return;
+        }
+        else{
+            std::cout << "Invalid choice, try again" << std::endl << std::endl;
+        }
+    }
+
+    std::stringstream deleteAdminQueryStream;
+    deleteAdminQueryStream << "DELETE FROM admin WHERE user = '" << adminNames[deleteOption - 1] << "';";
+    std::string deleteAdminQueryString = deleteAdminQueryStream.str();
+    int deleteAdminErrno = mysql_query(connection, deleteAdminQueryString.c_str());
+
+    system("clear");
+    if(deleteAdminErrno == 0){
+        std::cout << "User " << adminNames[deleteOption - 1] << " deleted sucessfully." << std::endl << std::endl;
+    }
+    else {
+        std::cout << "Error deleting user " << adminNames[deleteOption - 1] << ", no changes made to database." << std::endl << std::endl;
+    }
 
 
     return;
@@ -216,15 +266,15 @@ int main(){
             createUser(connection);
         }
 
-        if(userchoice == 2){
+        else if(userchoice == 2){
             createEmployee(connection);
         }
 
-        if(userchoice == 3){
+        else if(userchoice == 3){
             deleteAdmin(connection);
         }
 
-        if(userchoice == 0){
+        else if(userchoice == 0){
             std::cout << "Goodbye!" << std::endl;
             exit(1);
         }
