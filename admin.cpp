@@ -5,12 +5,8 @@
 #include <string.h>
 #include <mysql/mysql.h>
 
+// Hash function for password storage, not yet secure
 std::hash <std::string> passwordHash;
-
-// Waits for user keystroke before continuing
-void home(){
-    
-}
 
 // 1
 // Function to create new admin account
@@ -36,8 +32,8 @@ void createUser(MYSQL* connection){
     userRES = mysql_store_result(connection);
 
     if(mysql_num_rows(userRES) != 0){
+        system("clear");
         std::cout << std::endl << "Username is taken, please try again." << std::endl << std::endl;
-        home();
         return;
     }
     
@@ -51,8 +47,10 @@ void createUser(MYSQL* connection){
     std::string userInsertString = newUserInsert.str();
     int insertErrno = mysql_query(connection, userInsertString.c_str());
     if(insertErrno == 0){
-        std::cout << "New User Created Sucessfully!" << std::endl << std::endl;
+        system("clear");
+        std::cout << "New User '" << newUsername << "' Created Sucessfully!" << std::endl << std::endl;
     } else {
+        system("clear");
         std::cout << "Error creating new user, no changes made to database." << std::endl;
     }
 
@@ -70,7 +68,36 @@ void createEmployee(MYSQL* connection){
 // 3
 void deleteAdmin(MYSQL* connection){
 
+    std::cout << "Delete Admin Account" << std::endl << std::endl;
 
+    std::cout << "Select Account to be deleted:" << std::endl;
+
+    std::stringstream allAdminsStream;
+
+    allAdminsStream << "SELECT user FROM admin";
+    std::string allAdminsString = allAdminsStream.str();
+
+    int retireveAdmins = mysql_query(connection, allAdminsString.c_str());
+
+    // Error handling
+    if(retireveAdmins){
+        system("clear");
+        std::cout << "Error retireveing admins. \nNo Changes made to database." << std::endl;
+        return;
+    }
+
+    MYSQL_RES* adminRES = mysql_store_result(connection);
+    if(adminRES == NULL){
+        std::cout << "No accounts found\n";
+    }
+
+    MYSQL_ROW adminROW;
+
+    while(adminROW = mysql_fetch_row(adminRES)){
+        std::cout << adminROW[0] << std::endl;
+    }
+
+    
 
 
     return;
@@ -94,7 +121,7 @@ void changeUsername(MYSQL* connection){
 }
 
 // 6
-void restDatabase(MYSQL* connection){
+void resetDatabase(MYSQL* connection){
 
 
     return;
@@ -176,6 +203,7 @@ int main(){
         std::cout << "3. Delete Admin Account" << std::endl;
         std::cout << "4. Delete Employee" << std::endl;
         std::cout << "5. Change Admin Username" << std::endl;
+        std::cout << "6. Reset Database" << std::endl;
 
         std::cout << "0. Exit Admin Panel" << std::endl << std::endl;
 
@@ -197,7 +225,7 @@ int main(){
         }
 
         if(userchoice == 0){
-            std::cout << "Goodbye!" << std::endl << std::endl;
+            std::cout << "Goodbye!" << std::endl;
             exit(1);
         }
 

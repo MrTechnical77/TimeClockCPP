@@ -1,5 +1,8 @@
 Time clock application developed on Linux Ubuntu
 
+To donwload code:
+git clone https://github.com/MrTechnical77/TimeClockCPP
+
 Instructions for executions:
 
 If MYSQL is not installed run these commands in your terminal
@@ -35,3 +38,6 @@ sudo apt install make
 
 For C++:
 sudo apt install g++
+
+By defualt, the username and password are both admin, but once installed you are encourced to update your admin account,
+using the reset database feature will restore the user name and password to default values but all other data will be lost.
