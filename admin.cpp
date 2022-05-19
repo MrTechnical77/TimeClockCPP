@@ -93,6 +93,13 @@ void changeUsername(MYSQL* connection){
     return;
 }
 
+// 6
+void restDatabase(MYSQL* connection){
+
+
+    return;
+}
+
 
 int main(){
 
