@@ -60,6 +60,20 @@ void createUser(MYSQL* connection){
 // 2
 void createEmployee(MYSQL* connection){
 
+    std::string fname;
+    std::string lname;    
+
+    std::cout << "Creating new employee...\nEnter the new employee's information:" << std::endl; 
+
+    std::cout << "First name: ";
+    std::cin >> fname;
+
+    std::cout << std::endl << "Last name: ";
+    std::cin >> lname;
+
+    std::cout << std::endl << "Select employee type..." << std::endl;
+
+    
 
 
     return;
