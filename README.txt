@@ -39,5 +39,5 @@ sudo apt install make
 For C++:
 sudo apt install g++
 
-By defualt, the username and password are both admin, but once installed you are encourced to update your admin account,
-using the reset database feature will restore the user name and password to default values but all other data will be lost.
+By defualt, the username and password are both admin, but once installed you are encourced to update your admin account.
+To reset the database run the timeclok.sql file again, but all data will be lost.

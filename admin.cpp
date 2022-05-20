@@ -162,16 +162,49 @@ void deleteEmployee(MYSQL* connection){
 }
 
 // 5
-void changeUsername(MYSQL* connection){
+void changeAdminUsername(MYSQL* connection, std::string oldUsername){
 
+    std::cout << "What would you like to change your admin account username too?" << std::endl;
+    std::cout << "New Username: ";
 
+    std::string newUsername;
+    std::cin >> newUsername;
 
+    std::stringstream updateStream;
+    updateStream << "UPDATE admin SET user = '" << newUsername << "' WHERE user = '" << oldUsername << "';";
+    std::string updateString = updateStream.str();
+    int updateErrno = mysql_query(connection, updateString.c_str());
+
+    if(updateErrno == 0){
+        system("clear");
+        std::cout << "Username changed sucessfully from " << oldUsername << " to " << newUsername << "." << std::endl;
+    }
+    else {
+        system("clear");
+        std::cout << "Error changing username, no changes made to database" << std::endl;
+    }
 
     return;
 }
 
 // 6
-void resetDatabase(MYSQL* connection){
+void listAdmins(MYSQL* connection){
+
+    std::cout << "Current Admin Usernames: " << std::endl;
+
+    int getAdminsErrno = mysql_query(connection, "SELECT adminID, user FROM admin");
+    if(getAdminsErrno != 0){
+        std::cout << "Error fetching users" << std::endl;
+        return;
+    }
+
+    MYSQL_RES* adminRES = mysql_store_result(connection);
+
+    MYSQL_ROW adminROW;
+    std::cout << "ID\tUsername" << std::endl;
+    while(adminROW = mysql_fetch_row(adminRES)){
+        std::cout << adminROW[0] << "\t" << adminROW[1] << std::endl << std::endl;
+    }
 
 
     return;
@@ -253,7 +286,7 @@ int main(){
         std::cout << "3. Delete Admin Account" << std::endl;
         std::cout << "4. Delete Employee" << std::endl;
         std::cout << "5. Change Admin Username" << std::endl;
-        std::cout << "6. Reset Database" << std::endl;
+        std::cout << "6. List Admin Usernames" << std::endl;
 
         std::cout << "0. Exit Admin Panel" << std::endl << std::endl;
 
@@ -273,6 +306,15 @@ int main(){
         else if(userchoice == 3){
             deleteAdmin(connection);
         }
+
+        else if(userchoice == 5){
+            changeAdminUsername(connection, adminUsername);
+        }
+
+        else if(userchoice == 6){
+            listAdmins(connection);
+        }
+
 
         else if(userchoice == 0){
             std::cout << "Goodbye!" << std::endl;
