@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/griffin/TimeClockCPP'
+g++ -o admin admin.cpp -g -L/usr/include/mysql -lmysqlclient
+make: Leaving directory '/home/griffin/TimeClockCPP'
+ 
