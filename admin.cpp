@@ -73,6 +73,24 @@ void createEmployee(MYSQL* connection){
 
     std::cout << std::endl << "Select employee type..." << std::endl;
 
+    int empTypeErrno = mysql_query(connection, "SELECT empType FROM employeeType");
+
+    if(empTypeErrno != 0){
+        system("clear");
+        std::cout << "Error retieving employee types, no changes made to database." << std::endl << std::endl;
+        return;
+    }
+
+    MYSQL_RES* empTypesRES;
+
+    empTypesRES = mysql_store_result(connection);
+
+    if(empTypesRES == NULL){
+        system("clear");
+        std::cout << "Error retreving employee types.\nNo changes made to database." << std::endl << std::endl;
+        return;
+    }
+
     
 
 
