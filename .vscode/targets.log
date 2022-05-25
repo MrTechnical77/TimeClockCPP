@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon May 23 21:50:52 2022
+# Make data base, printed on Tue May 24 18:43:08 2022
 
 # Variables
 
@@ -23,7 +23,7 @@ SNAP_INSTANCE_KEY =
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-9066c196-b553-49a0-aac6-020442af5dde.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-fd8f6a2f-1906-4d7e-b792-90d6db83f301.sock
 # environment
 VSCODE_CWD = /home/griffin
 # default
@@ -97,7 +97,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 29710
+VSCODE_PID = 34839
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -203,7 +203,7 @@ SNAP_CONTEXT = _YEcOMgbos_RzLjcVRPc_h7GGK6g6BSBr48Y94ELwwdMsmc9d0Wt
 # environment
 MANAGERPID = 1567
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 29671
+GIO_LAUNCHED_DESKTOP_FILE_PID = 34801
 # environment
 _ = /snap/code/97/usr/share/code/code
 # environment
@@ -335,6 +335,6 @@ makefile:
 # strcache performance: lookups = 22 / hit rate = 31%
 # hash-table stats:
 # Load=15/8192=0%, Rehash=0, Collisions=0/22=0%
-# Finished Make data base on Mon May 23 21:50:52 2022
+# Finished Make data base on Tue May 24 18:43:08 2022
 
  

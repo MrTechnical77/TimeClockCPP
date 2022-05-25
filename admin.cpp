@@ -61,8 +61,15 @@ void createUser(MYSQL* connection){
 void createEmployee(MYSQL* connection){
 
     std::string fname;
-    std::string lname;    
-
+    std::string lname;  
+    std::string empType;
+    int empTypesCounter = 0;
+    MYSQL_ROW empTypesROW;
+    MYSQL_RES* empTypesRES;
+    int empTypeChoice;
+    char correct;
+ 
+    // User inputs employee name
     std::cout << "Creating new employee...\nEnter the new employee's information:" << std::endl; 
 
     std::cout << "First name: ";
@@ -73,26 +80,75 @@ void createEmployee(MYSQL* connection){
 
     std::cout << std::endl << "Select employee type..." << std::endl;
 
+    // Query to retieve employee types
     int empTypeErrno = mysql_query(connection, "SELECT empType FROM employeeType");
 
+    // Check for non zero amount of employee types.
     if(empTypeErrno != 0){
         system("clear");
-        std::cout << "Error retieving employee types, no changes made to database." << std::endl << std::endl;
+        std::cout << "Error retieving employee types, no changes made to database.\nPlease add new admin types to create new employees." << std::endl << std::endl;
         return;
     }
-
-    MYSQL_RES* empTypesRES;
 
     empTypesRES = mysql_store_result(connection);
 
+    // sql query error handling
     if(empTypesRES == NULL){
         system("clear");
-        std::cout << "Error retreving employee types.\nNo changes made to database." << std::endl << std::endl;
+        std::cout << "Error retreving database information.\nNo changes made to database." << std::endl << std::endl;
         return;
     }
 
-    
+    std::string empTypesArr[mysql_num_rows(empTypesRES)];
 
+
+    // List employee types and assign to array
+    while(empTypesROW = mysql_fetch_row(empTypesRES)){
+        std::cout << empTypesCounter + 1 << ". " << empTypesROW[0] << std::endl;
+        empTypesArr[empTypesCounter] = empTypesROW[0];
+        empTypesCounter++;
+    }
+
+    // User selects employee type
+    for(;;){
+        std::cout << std::endl << "Select option: ";
+        std::cin >> empTypeChoice;
+
+        if(empTypeChoice < 1 || empTypeChoice > empTypesCounter){
+            std::cout << "Invalid choice, please try again." << std::endl;
+        } 
+        else if(empTypeChoice > 1 || empTypeChoice < empTypesCounter){
+            empType = empTypeChoice;     
+            break;       
+        }
+    }
+
+    std::stringstream createEmployeeStream;
+    createEmployeeStream << "INSERT INTO employee(fname, lname, startdate, empType) VALUES('" << fname << "','" << lname << "', CURDATE()," << empType << ";";
+    std::string createEmpString = createEmployeeStream.str();
+
+    std::cout << "Employee Info...\nFirst Name: " << fname << "\nLast Name: " << lname << "\n" << empTypesArr[empTypeChoice - 1] << "\n\nIs this correct? Y/n" << std::endl;
+    std::cin >> correct;
+
+    for(;;){
+        if(correct == 'y' || correct == 'Y'){
+            break;
+        }
+        else if(correct == 'n' || correct == 'N'){
+            system("clear");
+            std::cout << "No has been selected, returning to main menu." << std::endl << std::endl;
+        }
+        else{
+            std::cout << "Incorrect option, try again..." << std::endl;
+        }
+    }
+
+    int createEmployee = mysql_query(connection, createEmpString.c_str());
+
+    if(createEmployee != 0){
+        system("clear");
+        std::cout << "An SQL error has occured, no changes made to database.\nError Number: " << createEmployee << std::endl;
+    }
 
     return;
 }
