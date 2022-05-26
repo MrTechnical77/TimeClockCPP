@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue May 24 18:43:08 2022
+# Make data base, printed on Thu May 26 16:22:16 2022
 
 # Variables
 
@@ -23,7 +23,7 @@ SNAP_INSTANCE_KEY =
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-fd8f6a2f-1906-4d7e-b792-90d6db83f301.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c9d62530-a9ae-4fa9-8927-1dfbcf277c58.sock
 # environment
 VSCODE_CWD = /home/griffin
 # default
@@ -97,7 +97,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 34839
+VSCODE_PID = 63123
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -203,7 +203,7 @@ SNAP_CONTEXT = _YEcOMgbos_RzLjcVRPc_h7GGK6g6BSBr48Y94ELwwdMsmc9d0Wt
 # environment
 MANAGERPID = 1567
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 34801
+GIO_LAUNCHED_DESKTOP_FILE_PID = 63077
 # environment
 _ = /snap/code/97/usr/share/code/code
 # environment
@@ -279,12 +279,12 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 all:
 #  Command line target.
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
 #  File does not exist.
+ 
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -335,6 +335,6 @@ makefile:
 # strcache performance: lookups = 22 / hit rate = 31%
 # hash-table stats:
 # Load=15/8192=0%, Rehash=0, Collisions=0/22=0%
-# Finished Make data base on Tue May 24 18:43:08 2022
+# Finished Make data base on Thu May 26 16:22:16 2022
 
  

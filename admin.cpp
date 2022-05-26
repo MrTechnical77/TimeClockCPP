@@ -124,7 +124,7 @@ void createEmployee(MYSQL* connection){
     }
 
     std::stringstream createEmployeeStream;
-    createEmployeeStream << "INSERT INTO employee(fname, lname, startdate, empType) VALUES('" << fname << "','" << lname << "', CURDATE()," << empType << ";";
+    createEmployeeStream << "insert into employee(fname, lname, startdate, empType) VALUES('" << fname << "', '" << lname << "', CURDATE(), " << empTypeChoice << ");";
     std::string createEmpString = createEmployeeStream.str();
 
     std::cout << "Employee Info...\nFirst Name: " << fname << "\nLast Name: " << lname << "\n" << empTypesArr[empTypeChoice - 1] << "\n\nIs this correct? Y/n" << std::endl;
