@@ -244,7 +244,81 @@ void deleteAdmin(MYSQL* connection){
 // 4
 void deleteEmployee(MYSQL* connection){
 
+    int userChoice;
+    char correct;
 
+    std::cout << "Which employee would you like to delete from the database?\nDeleting an employee will aslo remove all their punches from the database." << std::endl << std::endl;
+
+    int getEmployeeErrno = mysql_query(connection, "SELECT * FROM employee");
+
+    if(getEmployeeErrno != 0){
+        system("clear");
+        std::cout << "Error retrieving employees from database, no changed made to database" << std::endl << std::endl;
+    }
+
+    MYSQL_RES* employeeRES;
+    MYSQL_ROW employeeROW;
+    int employeeCounter = 0;
+
+    employeeRES = mysql_store_result(connection);
+    std::string employeeArr[mysql_num_rows(employeeRES)];
+    std::string employeeArrlname[mysql_num_rows(employeeRES)];
+    int employeeIDArr[mysql_num_rows(employeeRES)];
+
+    while(employeeROW = mysql_fetch_row(employeeRES)){
+        std::cout << employeeCounter + 1 << ". " << employeeROW[1] << " " << employeeROW[2] << std::endl;
+        employeeArr[employeeCounter] = employeeROW[1];
+        employeeArrlname[employeeCounter] = employeeROW[2];
+        employeeIDArr[employeeCounter] = atoi(employeeROW[0]);
+        employeeCounter++;
+    }
+
+    for(;;){
+        std::cout << "Input choice: ";
+        std::cin >> userChoice;
+        std::cout << std::endl;
+
+        if(userChoice < 1 || userChoice > employeeCounter){
+            std::cout << "Invalid choice, please try again." << std::endl;
+        } else {
+            break;
+        }
+    }
+
+    std::cout << "You have chosen to delete employee " << employeeArr[userChoice - 1] << ", do you wish to continue? (Y/n)" << std::endl;
+    std::cin >> correct;
+
+    if(correct != 'Y' || correct != 'y'){
+        system("clear");
+        std::cout << "You have chosen to cancel the deletion of employee " << employeeArr[userChoice -1] << ". No changes made to database." << std::endl;
+    }
+    
+    std::stringstream employeeDeletePunchStream;
+    employeeDeletePunchStream << "DELETE FROM punches WHERE employeeID = " << employeeIDArr[userChoice - 1] << ";";
+    std::string employeeDeletePunchString = employeeDeletePunchStream.str();
+
+    int deletePunchesErrno = mysql_query(connection, employeeDeletePunchString.c_str());
+
+    if(deletePunchesErrno != 0){
+        system("clear");
+        std::cout << "Error deleting employee punches.\nNo changes made to database.\nError Number: " << deletePunchesErrno << std::endl;
+        return; 
+    }
+
+    std::stringstream employeeDeleteStream;
+    std::cout << employeeIDArr[userChoice - 1] << std::endl;
+    employeeDeleteStream << "DELETE FROM employee WHERE employeeID = " << employeeIDArr[userChoice - 1] << ";";
+    std::string employeeDeleteString = employeeDeleteStream.str();
+    int employeeDeleteErrno = mysql_query(connection, employeeDeleteString.c_str());
+
+    if(employeeDeleteErrno != 0){
+        system("clear");
+        std::cout << "Error deleting employee from employee table, however, their punches were deleted.\nError Number: " << employeeDeleteErrno << std::endl;
+        return;
+    }
+
+    //system("clear");
+    std::cout << "Employee " << employeeArr[userChoice - 1] << " " << employeeArrlname[userChoice - 1] << " has been deleted from the database." << std::endl << std::endl;
 
     return;
 }
@@ -393,6 +467,10 @@ int main(){
 
         else if(userchoice == 3){
             deleteAdmin(connection);
+        }
+
+        else if(userchoice == 4){
+            deleteEmployee(connection);
         }
 
         else if(userchoice == 5){
