@@ -317,8 +317,9 @@ void deleteEmployee(MYSQL* connection){
         return;
     }
 
-    //system("clear");
+    system("clear");
     std::cout << "Employee " << employeeArr[userChoice - 1] << " " << employeeArrlname[userChoice - 1] << " has been deleted from the database." << std::endl << std::endl;
+
 
     return;
 }
