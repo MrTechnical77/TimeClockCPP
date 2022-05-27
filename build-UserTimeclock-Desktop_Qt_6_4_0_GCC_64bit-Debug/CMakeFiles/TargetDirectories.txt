@@ -1,5 +1,0 @@
-/home/griffin/TimeClockCPP/build-UserTimeclock-Desktop_Qt_6_4_0_GCC_64bit-Debug/CMakeFiles/rebuild_cache.dir
-/home/griffin/TimeClockCPP/build-UserTimeclock-Desktop_Qt_6_4_0_GCC_64bit-Debug/CMakeFiles/edit_cache.dir
-/home/griffin/TimeClockCPP/build-UserTimeclock-Desktop_Qt_6_4_0_GCC_64bit-Debug/CMakeFiles/UserTimeclock.dir
-/home/griffin/TimeClockCPP/build-UserTimeclock-Desktop_Qt_6_4_0_GCC_64bit-Debug/CMakeFiles/UserTimeclock_autogen_timestamp_deps.dir
-/home/griffin/TimeClockCPP/build-UserTimeclock-Desktop_Qt_6_4_0_GCC_64bit-Debug/CMakeFiles/UserTimeclock_autogen.dir

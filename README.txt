@@ -24,6 +24,7 @@ sudo mysql
 mysql> \. timeclock.sql
 exit
 sudo apt-get install libmysqlclient-dev
+sudo apt-get install libqt5sql5-mysql
 
 You can now run the source code provided you have a C++ compliler and make installed.
 To do this run the following commands in a terminal opened in the folder with the source code.
