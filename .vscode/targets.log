@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu May 26 23:43:37 2022
+# Make data base, printed on Tue May 31 20:59:09 2022
 
 # Variables
 
@@ -23,7 +23,7 @@ SNAP_INSTANCE_KEY =
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-a9bad10e-8d58-4767-91e8-3c60caa0555d.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-f69f2bfb-25d1-4758-9ca8-7e11015f53e7.sock
 # environment
 VSCODE_CWD = /home/griffin
 # default
@@ -57,7 +57,7 @@ VSCODE_CODE_CACHE_PATH = /home/griffin/.config/Code/CachedData/c3511e6c69bb39013
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.G3SLM1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.BKT2M1
 # default
 .LOADED := 
 # default
@@ -97,7 +97,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 76407
+VSCODE_PID = 26044
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -105,7 +105,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/griffin-Blade-Stealth:@/tmp/.ICE-unix/1759,unix/griffin-Blade-Stealth:/tmp/.ICE-unix/1759
+SESSION_MANAGER = local/griffin-Blade-Stealth:@/tmp/.ICE-unix/1826,unix/griffin-Blade-Stealth:/tmp/.ICE-unix/1826
 # automatic
 *F = $(notdir $*)
 # environment
@@ -149,7 +149,7 @@ SNAP_USER_COMMON = /home/griffin/snap/code/common
 # environment
 SNAP = /snap/code/97
 # environment
-INVOCATION_ID = e729d729c07b4c6d81c54d4ec83f6b68
+INVOCATION_ID = d5c79ff9ab114e63b055a117cdfefc1d
 # environment
 SNAP_REVISION = 97
 # environment
@@ -185,7 +185,7 @@ SNAP_ARCH = amd64
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 1812
+SYSTEMD_EXEC_PID = 1870
 # environment
 DISPLAY = :0
 # environment
@@ -201,9 +201,9 @@ SNAP_DATA = /var/snap/code/97
 # environment
 SNAP_CONTEXT = _YEcOMgbos_RzLjcVRPc_h7GGK6g6BSBr48Y94ELwwdMsmc9d0Wt
 # environment
-MANAGERPID = 1567
+MANAGERPID = 1640
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 76359
+GIO_LAUNCHED_DESKTOP_FILE_PID = 25998
 # environment
 _ = /snap/code/97/usr/share/code/code
 # environment
@@ -211,7 +211,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/griffin/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-JOURNAL_STREAM = 8:35172
+JOURNAL_STREAM = 8:31422
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -263,9 +263,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 2050, inode 8916681): 12 files, no impossibilities.
+# . (device 2050, inode 8916681): 11 files, no impossibilities.
 
-# 12 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -279,7 +279,6 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 all:
 #  Command line target.
 #  Implicit rule search has not been done.
@@ -289,6 +288,7 @@ all:
 #  Needs to be updated (-q is set).
 # automatic
 # @ := all
+ 
 # automatic
 # * := 
 # automatic
@@ -329,12 +329,12 @@ makefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 17 / storage = 213 B / avg = 12 B
-# current buf: size = 8162 B / used = 213 B / count = 17 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 16 / storage = 156 B / avg = 9 B
+# current buf: size = 8162 B / used = 156 B / count = 16 / avg = 9 B
 
-# strcache performance: lookups = 24 / hit rate = 29%
+# strcache performance: lookups = 23 / hit rate = 30%
 # hash-table stats:
-# Load=17/8192=0%, Rehash=0, Collisions=0/24=0%
-# Finished Make data base on Thu May 26 23:43:37 2022
+# Load=16/8192=0%, Rehash=0, Collisions=0/23=0%
+# Finished Make data base on Tue May 31 20:59:09 2022
 
  

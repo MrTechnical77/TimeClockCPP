@@ -26,12 +26,27 @@ void MainWindow::on_lineEdit_editingFinished()
     db.setPassword("TCAdmin");
     bool ok = db.open();
     if(ok){
-        QSqlQuery query("SELECT * FROM admin");
-        QString username = query.value(1).toString();
-        ui->lineEdit->setText(username);
+        QSqlQuery query;
+        query.prepare("INSERT INTO punches (employeeID, punchTime, punchType) "
+                      "VALUES(:employeeID, NOW(), :punchType)");
+
+        QString inputEmpID = ui->lineEdit->text();
+        query.bindValue(":employeeID", inputEmpID);
+        query.bindValue(":punchType", 1);
+        query.exec();
+
     }
     else {
         ui->lineEdit->setText("Failed to Connect");
     }
 }
+
+
+
+
+
+
+
+
+
 
