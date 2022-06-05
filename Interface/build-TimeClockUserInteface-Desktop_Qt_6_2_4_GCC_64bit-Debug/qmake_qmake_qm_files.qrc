@@ -1,0 +1,5 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="i18n">
+<file alias="TimeClockUserInteface_en_US.qm">/home/griffin/dev/timeclockcpp/Interface/build-TimeClockUserInteface-Desktop_Qt_6_2_4_GCC_64bit-Debug/.qm/TimeClockUserInteface_en_US.qm</file>
+</qresource>
+</RCC>

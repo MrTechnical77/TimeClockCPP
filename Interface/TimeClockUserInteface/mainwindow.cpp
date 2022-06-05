@@ -3,12 +3,26 @@
 #include <QSql>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QMessageBox>
+#include <QTimer>
+#include <QApplication>
+
+
+QSqlDatabase db;
+QFont inputIDLine("Comic Sans", 36);
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    db = QSqlDatabase::addDatabase("QMYSQL");
+    db.setHostName("localhost");
+    db.setDatabaseName("timeclock");
+    db.setUserName("TCAdmin");
+    db.setPassword("TCAdmin");
+    ui->lineEdit->setFont(inputIDLine);
+
 }
 
 MainWindow::~MainWindow()
@@ -16,37 +30,143 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::on_lineEdit_editingFinished()
+// Start Shift button
+void MainWindow::on_pushButton_clicked()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("localhost");
-    db.setDatabaseName("timeclock");
-    db.setUserName("TCAdmin");
-    db.setPassword("TCAdmin");
-    bool ok = db.open();
-    if(ok){
-        QSqlQuery query;
-        query.prepare("INSERT INTO punches (employeeID, punchTime, punchType) "
-                      "VALUES(:employeeID, NOW(), :punchType)");
+    QString inputEmpID = ui->lineEdit->text();
+    bool openDB = db.open();
+    if(openDB){
+        QSqlQuery punchInQuery;
+        punchInQuery.prepare("INSERT INTO punches (employeeID, punchTime, punchType) "
+                             "VALUES(:employeeID, NOW(), 1)");
 
-        QString inputEmpID = ui->lineEdit->text();
-        query.bindValue(":employeeID", inputEmpID);
-        query.bindValue(":punchType", 1);
-        query.exec();
+        punchInQuery.bindValue(":employeeID", inputEmpID);
+        bool punchAccepted = punchInQuery.exec();
+        if(punchAccepted){
+            QMessageBox::information(
+                        this,
+                        tr("TimeClock"),
+                        tr("Punch Accepted")
+                        );
+        }
+        else {
+            QMessageBox::information(
+                        this,
+                        tr("TimeClock"),
+                        tr("Punch Denied")
+                        );
+        }
+
+        ui->lineEdit->setText("");
 
     }
     else {
-        ui->lineEdit->setText("Failed to Connect");
+        ui->lineEdit->setText("Failed to open Database");
     }
 }
 
+// Start Lunch
+void MainWindow::on_pushButton_2_clicked()
+{
+    QString inputEmpID = ui->lineEdit->text();
+    bool openDB = db.open();
+    if(openDB){
+        QSqlQuery punchInQuery;
+        punchInQuery.prepare("INSERT INTO punches (employeeID, punchTime, punchType) "
+                             "VALUES(:employeeID, NOW(), 3)");
 
+        punchInQuery.bindValue(":employeeID", inputEmpID);
+        bool punchAccepted = punchInQuery.exec();
+        if(punchAccepted){
+            QMessageBox::information(
+                        this,
+                        tr("TimeClock"),
+                        tr("Punch Accepted")
+                        );
+        }
+        else {
+            QMessageBox::information(
+                        this,
+                        tr("TimeClock"),
+                        tr("Punch Denied")
+                        );
+        }
 
+        ui->lineEdit->setText("");
 
+    }
+    else {
+        ui->lineEdit->setText("Failed to open Database");
+    }
+}
 
+// End lunch button
+void MainWindow::on_pushButton_3_clicked()
+{
+    QString inputEmpID = ui->lineEdit->text();
+    bool openDB = db.open();
+    if(openDB){
+        QSqlQuery punchInQuery;
+        punchInQuery.prepare("INSERT INTO punches (employeeID, punchTime, punchType) "
+                             "VALUES(:employeeID, NOW(), 4)");
 
+        punchInQuery.bindValue(":employeeID", inputEmpID);
+        bool punchAccepted = punchInQuery.exec();
+        if(punchAccepted){
+            QMessageBox::information(
+                        this,
+                        tr("TimeClock"),
+                        tr("Punch Accepted")
+                        );
+        }
+        else {
+            QMessageBox::information(
+                        this,
+                        tr("TimeClock"),
+                        tr("Punch Denied")
+                        );
+        }
 
+        ui->lineEdit->setText("");
 
+    }
+    else {
+        ui->lineEdit->setText("Failed to open Database");
+    }
+}
 
+// End shift button
+void MainWindow::on_pushButton_4_clicked()
+{
+    QString inputEmpID = ui->lineEdit->text();
+    bool openDB = db.open();
+    if(openDB){
+        QSqlQuery punchInQuery;
+        punchInQuery.prepare("INSERT INTO punches (employeeID, punchTime, punchType) "
+                             "VALUES(:employeeID, NOW(), 2)");
+
+        punchInQuery.bindValue(":employeeID", inputEmpID);
+        bool punchAccepted = punchInQuery.exec();
+        if(punchAccepted){
+            QMessageBox::information(
+                        this,
+                        tr("TimeClock"),
+                        tr("Punch Accepted")
+                        );
+        }
+        else {
+            QMessageBox::information(
+                        this,
+                        tr("TimeClock"),
+                        tr("Punch Denied")
+                        );
+        }
+
+        ui->lineEdit->setText("");
+
+    }
+    else {
+        ui->lineEdit->setText("Failed to open Database");
+    }
+}
 
